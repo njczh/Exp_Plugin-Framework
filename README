@@ -1,0 +1,5 @@
+编译主框架
+g++ main.cpp CPluginController.cpp CPluginEnumerator.cpp IPlugin.cpp -ldl -std=c++11
+编译动态链接库
+g++ -fpic -shared -o ./plugin/1_helloworld.so helloworld.cpp IPlugin.cpp 
+g++ -fpic -shared -o ./plugin/2_hellochina.so hellochina.cpp IPlugin.cpp

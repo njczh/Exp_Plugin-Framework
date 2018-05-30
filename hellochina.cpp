@@ -6,25 +6,40 @@
  ************************************************************************/
 
 #include<iostream>
-
 using namespace std;
+
+#include "IPlugin.h"
 
 const int FUNC_ID = 2;
 
+class CPlugin : public IPlugin
+{
+public:
+	CPlugin(){}
+	virtual ~CPlugin(){}
+
+public:
+	virtual int GetId()
+	{
+		return FUNC_ID;
+	}
+
+	virtual void Print()
+	{
+		cout << "Hello China!" << endl;
+	}
+
+	virtual void Help()
+	{
+		cout << "Function ID: " << FUNC_ID 
+			<< ". This function will print \'Hello China\'." << endl;
+	}
+
+};
+
 // 使用extern “C”使的导出的函数名称和实际名称一致
-
-extern "C" int GetId()
+extern "C" void CreateObj(IPlugin **ppPlugin)
 {
-	return FUNC_ID;
-}
-
-extern "C" void Print()
-{
-	cout << "Hello China!" << endl;
-}
-
-extern "C" void Help()
-{
-	cout << "Function ID: " << FUNC_ID 
-		<< ".This function will print \'Hello China\'." << endl;
+	static CPlugin plugin;
+	*ppPlugin = &plugin;
 }

@@ -15,13 +15,7 @@ typedef int	 (*PROC_GETID)(void);
 #include <vector>
 using std::vector;
 
-struct Plugin
-{
-	void * handle;
-	PROC_PRINT dllPrint;
-	PROC_HELP  dllHelp;
-	PROC_GETID dllGetId;
-};
+#include "IPlugin.h"
 
 class CPluginController
 {
@@ -37,7 +31,7 @@ public:
 	bool ProcessRequest(int functionId);
 
 private:
-	vector<Plugin> plugins;
+	vector<IPlugin*> plugins;
 
 };
 
