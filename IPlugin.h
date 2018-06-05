@@ -15,9 +15,8 @@ public:
 	virtual ~IPlugin();
 
 public:
-	virtual int GetId() = 0;
 	virtual void Print() = 0;
-	virtual void Help() = 0;
+	virtual void Help(int id) = 0;
 
 public:
 	void   SetHandle(void *);

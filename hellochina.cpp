@@ -10,8 +10,6 @@ using namespace std;
 
 #include "IPlugin.h"
 
-const int FUNC_ID = 2;
-
 class CPlugin : public IPlugin
 {
 public:
@@ -19,19 +17,15 @@ public:
 	virtual ~CPlugin(){}
 
 public:
-	virtual int GetId()
-	{
-		return FUNC_ID;
-	}
 
 	virtual void Print()
 	{
 		cout << "Hello China!" << endl;
 	}
 
-	virtual void Help()
+	virtual void Help(int id)
 	{
-		cout << "Function ID: " << FUNC_ID 
+		cout << "Function ID: " << id 
 			<< ". This function will print \'Hello China\'." << endl;
 	}
 
@@ -40,6 +34,6 @@ public:
 // 使用extern “C”使的导出的函数名称和实际名称一致
 extern "C" void CreateObj(IPlugin **ppPlugin)
 {
-	static CPlugin plugin;
-	*ppPlugin = &plugin;
+	static CPlugin *plugin = new CPlugin();
+	*ppPlugin = plugin;
 }

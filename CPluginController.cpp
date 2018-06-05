@@ -77,23 +77,21 @@ bool CPluginController::ProcessHelp( void )
 {
 	for ( int i = 0; i < plugins.size(); i++ )
 	{
-		plugins[i]->Help();
+		plugins[i]->Help(i+1);
 	}
 }
 
 
 bool CPluginController::ProcessRequest( int functionId )
 {
-	for ( int i = 0; i < plugins.size(); i++ )
+	if(functionId > plugins.size() || functionId < 1)
 	{
-		/* 调用动态链接库中的函数 */
-		if ( plugins[i]->GetId() == functionId )
-		{
-			plugins[i]->Print();
-			return true;
-		}
+		return false;
 	}
-
-	return false;
+	else
+	{
+		plugins[functionId-1]->Print();
+		return true;
+	}
 }
 

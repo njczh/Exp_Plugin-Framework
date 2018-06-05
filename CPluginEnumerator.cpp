@@ -9,6 +9,8 @@
 
 #include <string.h>
 #include <dirent.h>
+#include <iostream>
+using namespace std;
 
 bool CPluginEnumerator::GetPluginNames(vector<string> &v_strPluginNames)
 {

@@ -26,7 +26,7 @@ int main( int argc, char *argv[] )
 	pluginController.Initialize();
 
 	int id = atoi( argv[1] );
-	if( id != NULL ){
+	if( id != 0 ){
 		if( !pluginController.ProcessRequest( id ) )
 			cout << "No such function belonging to this func ID." << endl;
 	}
